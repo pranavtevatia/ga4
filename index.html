@@ -14,7 +14,7 @@
 </head>
 <body>
   <h1>Login</h1>
-  <form action="dashboard.html">
+  <form action="dashboard.html" id="loginForm">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
     <br>
@@ -25,22 +25,21 @@
   </form>
 
   <script>
-    document.getElementById('username').addEventListener('change', function(event) {
-      var username = event.target.value;
-      gtag('event', 'input_data', {
-        'event_category': 'Input Field',
-        'event_label': 'Username',
-        'input_value': username
-      });
-    });
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
 
-    document.getElementById('password').addEventListener('change', function(event) {
-      var password = event.target.value;
-      gtag('event', 'input_data', {
-        'event_category': 'Input Field',
-        'event_label': 'Password',
-        'input_value': password
+      // Send the final input field values to Google Analytics
+      gtag('event', 'form_submit', {
+        'event_category': 'Form',
+        'event_label': 'Login',
+        'username': username,
+        'password': password
       });
+
+      // Perform form submission or other actions
+      // ...
     });
   </script>
 </body>
