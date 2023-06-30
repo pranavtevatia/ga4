@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-K1WGWHB5DX');
+
+  // Push age as a user property to the data layer
+  var age = 0; // Default value if age is not provided
+  if (typeof age !== 'undefined') {
+    window.dataLayer.push({
+      'userAge': age
+    });
+  }
 </script>
 
-  <title>Login</title>
+<title>Login</title>
 </head>
 <body>
   <h1>Login</h1>
@@ -21,6 +27,9 @@
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
     <br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required>
+    <br>
     <input type="submit" value="Login">
   </form>
 
@@ -29,13 +38,19 @@
       event.preventDefault();
       var username = document.getElementById('username').value;
       var password = document.getElementById('password').value;
+      var age = document.getElementById('age').value;
 
-      // Send the final input field values to Google Analytics
+      // Send the final input field values to Google Analytics via gtag
       gtag('event', 'form_submit', {
         'event_category': 'Form',
         'event_label': 'Login',
         'username': username,
         'password': password
+      });
+
+      // Push age as a user property to the data layer for GTM
+      window.dataLayer.push({
+        'userAge': age
       });
 
       // Perform form submission or other actions
